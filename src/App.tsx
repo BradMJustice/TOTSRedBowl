@@ -84,11 +84,6 @@ function App() {
 		<div className="App">
 			<Row>
 				<CenteredCol span={24}>
-					<h2>List of entries can be found below</h2>
-				</CenteredCol>
-			</Row>
-			<Row>
-				<CenteredCol span={24}>
 					{
 						responses?.length > 0 &&
 						<button

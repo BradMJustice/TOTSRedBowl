@@ -4,11 +4,38 @@ import { RedBowlResponse } from './Models/Reponse';
 import { Col, Row } from 'antd';
 import styled from 'styled-components';
 import random from 'random';
+import moment from 'moment';
 
-const dedupeResponses = (responses: RedBowlResponse[]): RedBowlResponse[] => {
+const debug = false;
+
+const cleanResponses = (responses: RedBowlResponse[]): RedBowlResponse[] => {
+
+	//Filter responses to those submitted after 1 hour before curtain
+	const todayMoment = moment(new Date());
+	const dayOfWeek = todayMoment.day();
+	let minHour: number = 23;
+
+	if (debug) {
+		minHour = 0;
+	} else if (dayOfWeek === 5 || dayOfWeek === 6) {
+		minHour = 18;
+	} else if (dayOfWeek === 0) {
+		minHour = 13;
+	}
+
+	const timeFilteredResponses = responses.filter((r) => {
+		const responseMoment = moment(r.date);
+		const responseHour = responseMoment.hour();
+
+		const isSameDay = responseMoment.isSame(todayMoment, 'day');
+		const isAfterMinHour = responseHour >= minHour
+
+		return isSameDay && isAfterMinHour;
+	});
+
 	const dedupedResponses: RedBowlResponse[] = [];
 
-	for (const response of responses) {
+	for (const response of timeFilteredResponses) {
 		const existingResponse = dedupedResponses.find((r) => {
 			return r.email === response.email;
 		});
@@ -54,8 +81,8 @@ function App() {
 								return returnResponse;
 							});
 
-							const deduped = dedupeResponses(parsedResponses);
-							setResponses(deduped);
+							const cleaned = cleanResponses(parsedResponses);
+							setResponses(cleaned);
 						}).catch((error) => {
 							console.log(error);
 						});
@@ -86,16 +113,17 @@ function App() {
 			<Row>
 				<CenteredCol span={24}>
 					{
-						responses?.length > 0 &&
-						<button
-							onClick={generateRandomNumber}
-							style={{
-								width: "50%",
-								height: "5em"
-							}}
-						>
-							Randomly select winner
+						responses?.length > 0
+							? <button
+								onClick={generateRandomNumber}
+								style={{
+									width: "50%",
+									height: "5em"
+								}}
+							>
+								Randomly select winner
 						</button>
+							: <h1>No entries yet!</h1>
 					}
 				</CenteredCol>
 			</Row>

@@ -91,20 +91,33 @@ function App() {
 				<CenteredCol span={24}>
 					{
 						responses?.length > 0 &&
-						<button onClick={generateRandomNumber}>Randomly select winner</button>
+						<button
+							onClick={generateRandomNumber}
+							style={{
+								width: "50%",
+								height: "5em"
+							}}
+						>
+							Randomly select winner
+						</button>
 					}
 				</CenteredCol>
 			</Row>
-			<Row>
-				<CenteredCol span={24}>
-					{
-						winner &&
-						<>
-							<h1>{`Winner: ${winnerName}, ${winnerEmail}`}</h1>
-						</>
-					}
-				</CenteredCol>
-			</Row>
+			{
+				winner &&
+				<>
+					<Row>
+						<CenteredCol span={24}>
+							<h1>Winner:</h1>
+						</CenteredCol>
+					</Row>
+					<Row>
+						<CenteredCol span={24}>
+							<h1>{`${winnerName}, ${winnerEmail}`}</h1>
+						</CenteredCol>
+					</Row>
+				</>
+			}
 			<Row>
 				<Col span={24}>
 					<ol>

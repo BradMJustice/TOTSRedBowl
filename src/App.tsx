@@ -3,6 +3,7 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { RedBowlResponse } from './Models/Reponse';
 import { Col, Row } from 'antd';
 import styled from 'styled-components';
+import random from 'random';
 
 const dedupeResponses = (responses: RedBowlResponse[]): RedBowlResponse[] => {
 	const dedupedResponses: RedBowlResponse[] = [];
@@ -65,7 +66,7 @@ function App() {
 	}, [doc]);
 
 	const generateRandomNumber = () => {
-		const randomIndex = Math.floor(Math.random() * responses.length);
+		const randomIndex = random.int(0, responses?.length - 1);
 		console.log(randomIndex);
 		setWinnerIndex(randomIndex);
 	}

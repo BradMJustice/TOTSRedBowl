@@ -14,6 +14,7 @@
     "antd": "^4.10.3",
     "gh-pages": "^3.1.0",
     "google-spreadsheet": "^3.1.15",
+    "random": "^2.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -50,6 +51,7 @@
   "devDependencies": {
     "@types/antd": "^1.0.0",
     "@types/google-spreadsheet": "^3.0.2",
+    "@types/random": "^2.1.1",
     "@types/styled-components": "^5.1.7"
   }
 }

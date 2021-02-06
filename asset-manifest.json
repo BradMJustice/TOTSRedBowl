@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/TOTSRedBowl/static/js/main.aa96728c.chunk.js",
-    "main.js.map": "/TOTSRedBowl/static/js/main.aa96728c.chunk.js.map",
+    "main.js": "/TOTSRedBowl/static/js/main.5fdb3e2d.chunk.js",
+    "main.js.map": "/TOTSRedBowl/static/js/main.5fdb3e2d.chunk.js.map",
     "runtime-main.js": "/TOTSRedBowl/static/js/runtime-main.78e3b452.js",
     "runtime-main.js.map": "/TOTSRedBowl/static/js/runtime-main.78e3b452.js.map",
-    "static/js/2.d5391daa.chunk.js": "/TOTSRedBowl/static/js/2.d5391daa.chunk.js",
-    "static/js/2.d5391daa.chunk.js.map": "/TOTSRedBowl/static/js/2.d5391daa.chunk.js.map",
+    "static/js/2.4ca060ca.chunk.js": "/TOTSRedBowl/static/js/2.4ca060ca.chunk.js",
+    "static/js/2.4ca060ca.chunk.js.map": "/TOTSRedBowl/static/js/2.4ca060ca.chunk.js.map",
     "index.html": "/TOTSRedBowl/index.html",
-    "static/js/2.d5391daa.chunk.js.LICENSE.txt": "/TOTSRedBowl/static/js/2.d5391daa.chunk.js.LICENSE.txt"
+    "static/js/2.4ca060ca.chunk.js.LICENSE.txt": "/TOTSRedBowl/static/js/2.4ca060ca.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.78e3b452.js",
-    "static/js/2.d5391daa.chunk.js",
-    "static/js/main.aa96728c.chunk.js"
+    "static/js/2.4ca060ca.chunk.js",
+    "static/js/main.5fdb3e2d.chunk.js"
   ]
 }

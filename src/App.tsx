@@ -33,6 +33,7 @@ function App() {
 	const [responses, setResponses] = useState<RedBowlResponse[]>([]);
 	const [winnerIndex, setWinnerIndex] = useState<number>(-1);
 	const [filterDate, setFilterDate] = useState<string>(dateToString(new Date()))
+	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		setDoc(new GoogleSpreadsheet('1OEry52CfvOobIL9hjQGPOCl0ncIMF_KHrtY4glougLE'));
@@ -58,6 +59,7 @@ function App() {
 							});
 
 							setResponses(parsedResponses);
+							setLoading(false);
 						}).catch((error) => {
 							console.log(error);
 						});
@@ -71,7 +73,7 @@ function App() {
 
 		//Filter responses to those submitted after 2 hours before curtain
 		const dateMoment = moment(filterDate);
-		
+
 		const dayOfWeek = dateMoment.day();
 		let minHour: number = 23;
 
@@ -130,6 +132,21 @@ function App() {
 	const winnerName = `${winner?.firstname} ${winner?.lastname}`;
 	const winnerEmail = `${winner?.email}`;
 
+	const topContentIfLoaded = responses?.length > 0
+		? <button
+			onClick={generateRandomNumber}
+			style={{
+				width: "50%",
+				height: "5em"
+			}}>
+			Randomly select winner
+			</button>
+		: <h1>No entries yet!</h1>
+
+	const topContent = loading
+		? <h2>Loading, please wait</h2>
+		: topContentIfLoaded;
+
 	return (
 		<div className="App">
 			<Row>
@@ -147,24 +164,12 @@ function App() {
 			</Row>
 			<Row>
 				<CenteredCol span={24}>
-					{
-						responses?.length > 0
-							? <button
-								onClick={generateRandomNumber}
-								style={{
-									width: "50%",
-									height: "5em"
-								}}
-							>
-								Randomly select winner
-						</button>
-							: <h1>No entries yet!</h1>
-					}
+					{topContent}
 				</CenteredCol>
 			</Row>
 			{
 				winner &&
-				<>
+				<div style={{ color: "red" }}>
 					<Row>
 						<CenteredCol span={24}>
 							<h1>Winner:</h1>
@@ -172,10 +177,10 @@ function App() {
 					</Row>
 					<Row>
 						<CenteredCol span={24}>
-							<h1>{`${winnerName}, ${winnerEmail}`}</h1>
+							<h3>{`${winnerName}, ${winnerEmail}`}</h3>
 						</CenteredCol>
 					</Row>
-				</>
+				</div>
 			}
 			<Row>
 				<Col span={24}>
